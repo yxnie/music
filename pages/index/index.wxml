@@ -1,0 +1,26 @@
+<search></search>
+<view class="wrap">
+  <banner></banner>
+  <list></list>
+  <view class="title">
+    <view class="left">推荐歌单</view>
+    <view class="right">歌单广场</view>
+  </view>
+  <recommend recommend="{{recommend}}"></recommend>
+  <new></new>
+  <view class="title">
+    <view class="left">音乐新势力</view>
+    <view class="right">新音乐</view>
+  </view>
+  <musicNewPower musicNewPower="{{musicNewPower}}"></musicNewPower>
+  <view class="title">
+    <view class="left">推荐电台</view>
+    <view class="right">电台广场</view>
+  </view>
+ <foot data="{{djprogram}}"></foot>
+  <view class="title">
+    <view class="left">推荐节目</view>
+    <view class="right">更多节目</view>
+  </view>
+  <foot data="{{program}}"></foot>
+</view>

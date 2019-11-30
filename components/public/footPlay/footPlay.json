@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-circle": "/lib/vant/circle/index"
+  }
+}

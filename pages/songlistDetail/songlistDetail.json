@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "list": "../../components/songlistDetail/list/list",
+    "songlist": "../../components/songlistDetail/songlist/songlist",
+    "van-sticky": "/lib/vant/sticky/index",
+    "footPlay": "../../components/public/footPlay/footPlay"
+  },
+  "navigationStyle": "custom"
+}

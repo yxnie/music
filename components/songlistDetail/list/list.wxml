@@ -1,0 +1,20 @@
+<view class="content">
+    <view class="one">
+      <view class="num"><image src="../../../images/comment-lines.png"></image></view>
+      <view class="desc">{{data.commentCount}}</view>
+    </view>
+    <view class="one">
+      <view class="num"><image src="../../../images/share.png"></image></view>
+      <view class="desc">{{data.shareCount}}</view>
+    </view>
+    <view class="one">
+      <view class="num"><image src="../../../images/down.png"></image></view>
+      <view class="desc">下载</view>
+    </view>
+    <view class="one">
+      <view class="num">
+        <image src="../../../images/check.png"></image>
+      </view>
+      <view class="desc">多选</view>
+    </view>
+  </view>

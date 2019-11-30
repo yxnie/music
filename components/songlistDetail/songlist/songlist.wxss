@@ -1,0 +1,91 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+  /* position: relative;
+  top: -40rpx; */
+  border-radius: 40rpx 40rpx 0 0;
+  background: white;
+  width: 711rpx;
+}
+
+.icon {
+  margin-right: 30rpx;
+  margin-left: 10rpx;
+}
+
+.left {
+  display: flex;
+  padding: 10rpx;
+  position: relative;
+  top: 10rpx;
+}
+
+.right {
+  background: red;
+  display: flex;
+  color: white;
+  padding: 20rpx;
+  border-radius: 48rpx;
+  font-size: 26rpx;
+  height: 36rpx;
+}
+
+.subscribedCount {
+  margin-left: 8rpx;
+}
+
+.color {
+  color: #666;
+}
+.song {
+  display: flex;
+  height: 100rpx;
+  padding: 16rpx 0;
+  justify-content: space-between;
+}
+.songlist {
+  padding: 20rpx;
+  /* position: relative;
+  top: -40rpx; */
+  background: white;
+}
+.song image {
+  width: 44rpx;
+  height: 44rpx;
+  display: block;
+  margin-top: 28rpx;
+}
+.more {
+  margin-left: 20rpx;
+}
+.index {
+  line-height: 100rpx;
+  font-size: 34rpx;
+  color: #999;
+  margin-left: 10rpx;
+  width: 60rpx;
+  padding-right: 28rpx;
+  text-align: center;
+}
+.desc {
+  flex: 1;
+}
+.content {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+  display: flex;
+}
+.songName {
+  margin-top: 10rpx;
+  font-size: 34rpx;
+  color: black;
+}
+.vip {
+  color: red;
+  padding: 0 6rpx;
+  border: 2rpx solid red;
+  height: 26rpx;
+  margin-right: 14rpx;
+}

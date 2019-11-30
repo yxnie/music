@@ -1,0 +1,68 @@
+.top {
+  display: flex;
+}
+
+.import {
+  color: red;
+}
+.img {
+  width: 32rpx;
+  height: 32rpx;
+  display: block;
+  margin: 0 10rpx;
+  position: relative;
+  top: 14rpx;
+}
+.before {
+  display: flex;
+  width: 30%;
+  line-height: 60rpx;
+}
+
+.icon {
+ margin: 0 10rpx;
+  position: relative;
+  top: 4rpx;
+}
+
+.all {
+  margin: 60rpx 20rpx;
+  position: relative;
+}
+.password {
+  display: flex;
+  margin: 40rpx 0;
+}
+.input {
+  height: 60rpx;
+  flex: 1;
+}
+.foot {
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+  margin-top: 40rpx;
+  padding: 0 5%;
+}
+.but {
+  padding: 20rpx 40rpx;
+  background: #ff4444;
+  color: white;
+  border-radius: 10rpx;
+}
+.but1 {
+  background: #ff976a;
+}
+.err {
+  position: absolute;
+  font-size: 20rpx;
+  color: rgb(219, 58, 18);
+  left: 30%;
+}
+.err1 {
+  position: absolute;
+  font-size: 20rpx;
+  color: rgb(219, 58, 18);
+  left: 30%;
+  top: 164rpx;
+}

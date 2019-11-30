@@ -1,0 +1,7 @@
+<view class="singer">
+  <view wx:for="{{data}}" wx:key="{{index}}" class="one">
+    <image src="{{item.picUrl}}" lazy-load="{{true}}"></image>
+    <view class="name">{{item.name}}</view>
+  </view>
+  <view class="foot" wx:if="{{length<limit}}">已加载全部</view>
+</view>

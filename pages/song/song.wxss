@@ -1,0 +1,73 @@
+.bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0px;
+  background-size: 100% 100%;
+  filter: blur(200rpx);
+  z-index: -99;
+}
+.title {
+  text-align: center;
+  color: white;
+  font-size: 26rpx;
+}
+.name {
+  font-weight: bold;
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+}
+.title image {
+  width: 400rpx;
+  display: block;
+  height: 400rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.img {
+  padding-top: 100rpx;
+}
+.play image {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+}
+.play {
+  margin-top: 120rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.circulation {
+  position: relative;
+}
+
+.center image {
+  width: 80rpx;
+  height: 80rpx;
+  position: relative;
+  top: -10rpx;
+}
+.progress {
+  position: relative;
+}
+.custom-class {
+  width: 400rpx;
+  margin: 100rpx auto 60rpx;
+  /* position: absolute; */
+}
+.nowTime {
+  position: absolute;
+  top: -20rpx;
+  left: -140rpx;
+  color: white;
+}
+.allTime {
+  position: absolute;
+  top: -20rpx;
+  right: -140rpx;
+  color: white;
+}

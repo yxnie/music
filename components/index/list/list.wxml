@@ -1,0 +1,32 @@
+<view class="all">
+  <view class="one">
+    <view class="img">
+      <image src="../../../images/recommend.png"></image>
+    </view>
+    <view class="word">每日推荐</view>
+  </view>
+  <view class="one">
+    <view class="img">
+      <image src="../../../images/songList.png"></image>
+    </view>
+    <view class="word">歌单</view>
+  </view>
+  <view class="one">
+    <view class="img">
+      <image src="../../../images/rankingList.png"></image>
+    </view>
+    <view class="word">排行榜</view>
+  </view>
+  <view class="one">
+    <view class="img">
+      <image src="../../../images/radio.png"></image>
+    </view>
+    <view class="word">电台</view>
+  </view>
+  <view class="one">
+    <view class="img">
+      <image src="../../../images/live.png"></image>
+    </view>
+    <view class="word">直播</view>
+  </view>
+</view>

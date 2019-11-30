@@ -1,0 +1,14 @@
+.collect image {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+}
+.collect {
+  margin-top: 100rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.more {
+  border: 4rpx solid white;
+  border-radius: 50%
+}

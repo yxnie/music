@@ -1,0 +1,11 @@
+<view class="all">
+  <view wx:for="{{data}}" wx:key="{{index}}" class="recommendone">
+    <view wx:if="{{item.picUrl}}">
+      <image src="{{item.picUrl}}"></image>
+    </view>
+    <view wx:if="{{item.blurCoverUrl}}">
+      <image src="{{item.blurCoverUrl}}"></image>
+    </view>
+    <view class="name">{{item.name}}</view>
+  </view>
+</view>

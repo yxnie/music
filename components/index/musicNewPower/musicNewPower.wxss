@@ -1,0 +1,41 @@
+.all {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.recommendone {
+  flex: 1;
+  position: relative;
+}
+
+.recommendone image {
+  display: block;
+  width: 228rpx;
+  height: 170rpx;
+  border-radius: 14rpx;
+}
+
+.name {
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.playCount {
+  position: absolute;
+  color: white;
+  top:130rpx;
+  font-size: 26rpx;
+  left: 10rpx;
+}
+.playCount image {
+  display: inline-block;
+  width: 28rpx;
+  height: 28rpx;
+}

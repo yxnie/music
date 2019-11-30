@@ -1,0 +1,36 @@
+<van-sticky offset-top="{{ 90 }}">
+  <view class="title">
+    <view class="left">
+      <van-icon name="play-circle-o" size="48rpx" class="icon" />
+      <view class="trackCount">播放全部
+        <text class="color">(共{{data.playlist.trackCount}}首)</text>
+      </view>
+    </view>
+    <view class="right">
+      <van-icon name="plus" color="white" size="30rpx" />
+      <view class="subscribedCount">收藏({{data.playlist.subscribedCount}})</view>
+    </view>
+  </view>
+</van-sticky>
+<view class="songlist">
+  <scroll-view scroll-y="true" style="height:1000rpx">
+    <view wx:for="{{data.playlist.tracks}}" wx:key="{{index}}" class="song" bindtap="play" data-id="{{item.id}}" data-index="{{index}}">
+      <view class="index">{{index+1}}</view>
+      <view class="desc">
+        <view class="songName">{{item.name}}</view>
+        <view class="content">
+          <view wx:if="{{item.fee===1}}" class="vip">vip</view>
+          <view wx:if="{{item.fee===1}}" class="vip">试听</view>
+          <view class="word">{{item.ar[0].name}}-{{item.al.name}}</view>
+        </view>
+      </view>
+      <view class="more">
+        <image src="../../../images/play3.png"></image>
+      </view>
+      <view class="more">
+        <image src="../../../images/more2.png"></image>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+

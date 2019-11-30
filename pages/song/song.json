@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "collect": "../../components/song/collect/collect",
+    "van-progress": "/lib/vant/progress/index",
+    "van-slider": "/lib/vant/slider/index",
+    "hideList": "../../components/public/hideList/hideList"
+  },
+  "navigationBarTitleText": "播放歌曲"
+}

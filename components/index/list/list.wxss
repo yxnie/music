@@ -1,0 +1,19 @@
+.one image {
+  display: block;
+  width: 66rpx;
+  height: 66rpx;
+}
+.all {
+  display: flex;
+  justify-content: space-between;
+  margin: 40rpx 0;
+}
+.one {
+  flex: 1;
+  text-align: center;
+}
+.img {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14rpx;
+}

@@ -1,0 +1,54 @@
+<van-tabs bind:click="onClick">
+  <van-tab title="手机号登录">
+    <view class="all">
+      <view class="top">
+        <view class="before">
+          <view class="import">*</view>
+          <van-icon name="phone-o" class="icon" />
+          <view class="phone">手机号</view>
+        </view>
+        <input placeholder="请输入手机号" class="input" value="{{phone}}" bindblur="getPhone" confirm-type="next"></input>
+      </view>
+      <view wx:if="{{phoneLock}}" class="err">手机号码有误，请重新填写</view>
+      <view class="password">
+        <view class="before">
+          <view class="import">*</view>
+          <image src="../../images/password.png" class="img"></image>
+          <view class="phone">密码</view>
+        </view>
+        <input placeholder="请输入密码" class="input" type="password" value="{{password}}" bindblur="getPassword" confirm-type="next"></input>
+      </view>
+      <view wx:if="{{passwordLock}}" class="err1">请输入6-20字符长度的密码</view>
+    </view>
+    <view class="foot">
+      <view class="but but1" bindtap="goRegister">前往注册</view>
+      <view class="but" bindtap="phoneLogin">立即登录</view>
+    </view>
+  </van-tab>
+  <van-tab title="邮箱登录">
+    <view class="all">
+      <view class="top">
+        <view class="before">
+          <view class="import">*</view>
+          <van-icon name="envelop-o" class="icon" />
+          <view class="phone">邮箱</view>
+        </view>
+        <input placeholder="请输入网易邮箱" class="input" value="{{phone}}" bindblur="getEmail" confirm-type="next"></input>
+      </view>
+      <view wx:if="{{emailLock}}" class="err">请填写网易邮箱</view>
+      <view class="password">
+        <view class="before">
+          <view class="import">*</view>
+          <image src="../../images/password.png" class="img"></image>
+          <view class="phone">密码</view>
+        </view>
+        <input placeholder="请输入密码" class="input" type="password" value="{{password}}" bindblur="getPassword" confirm-type="next"></input>
+      </view>
+      <view wx:if="{{passwordLock}}" class="err1">请输入6-20字符长度的密码</view>
+    </view>
+    <view class="foot">
+      <view class="but but1" bindtap="goRegister">前往注册</view>
+      <view class="but" bindtap="emailLogin">立即登录</view>
+    </view>
+  </van-tab>
+</van-tabs>

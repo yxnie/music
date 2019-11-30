@@ -1,0 +1,6 @@
+<view class="collect">
+<view><image src="../../../images/collect.png"></image><image src="../../../images/collected.png" wx:if="{{false}}"></image></view>
+<view><image src="../../../images/down.png"></image></view>
+<view><image src="../../../images/comment-lines.png"></image></view>
+<view class="more"><image src="../../../images/more1.png"></image></view>
+</view>

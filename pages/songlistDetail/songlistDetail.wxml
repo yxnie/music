@@ -1,0 +1,44 @@
+<!-- <image src="{{data.playlist.coverImgUrl}}"></image> -->
+<!-- <image src="{{data.playlist.creator.avatarUrl}}"></image> -->
+<view style="background-image: url('{{data.playlist.coverImgUrl}}')" class="all"></view>
+<van-sticky offset-top="{{ 0 }}" style="width:100%">
+  <view class="head">
+    <view class="back" bindtap="back">
+      <image src="../../images/left.png"></image>
+    </view>
+    <view class="title">歌单</view>
+    <!-- <view>{{data.playlist.name}}</view> -->
+    <view class="more">
+      <image src="../../images/more1.png"></image>
+    </view>
+  </view>
+</van-sticky>
+<view class="top">
+  <view class="desc">
+    <view class="before">
+      <image src="{{data.playlist.coverImgUrl}}"></image>
+    </view>
+    <view class="after">
+      <view class="playlistName">{{data.playlist.name}}</view>
+      <view class="center">
+        <view class="creatorAvatar">
+          <image src="{{data.playlist.creator.avatarUrl}}"></image>
+        </view>
+        <view class="creatorNickname">{{data.playlist.creator.nickname}}</view>
+        <view class="moreInfo icon1">
+          <image src="../../images/more.png"></image>
+        </view>
+      </view>
+      <view class="description">
+        <view class="word">{{data.playlist.description}}</view>
+        <view class="moreInfo icon2">
+          <image src="../../images/more.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <list data="{{data.playlist}}"></list>
+</view>
+
+<songlist data="{{data}}" songIndex="{{songIndex}}" bind:editIndex="editIndex"></songlist>
+<footPlay list="{{data.playlist.tracks}}" songIndex="{{songIndex}}"></footPlay>

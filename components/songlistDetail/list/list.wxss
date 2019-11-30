@@ -1,0 +1,18 @@
+.content {
+  display: flex;
+  padding-top: 30rpx;
+  padding-bottom: 20rpx;
+  color: white
+}
+.one {
+  flex: 1;
+  text-align: center;
+}
+
+.desc {
+  margin-top: 6rpx;
+}
+.num image {
+  width: 60rpx;
+  height: 60rpx;
+}

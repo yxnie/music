@@ -1,0 +1,16 @@
+.classify {
+  width: 94%;
+  white-space: nowrap;
+  margin: 0 3%;
+}
+.check {
+  color: white;
+  background: #c20c0c;
+}
+.one {
+  display: inline-block;
+  padding: 10rpx;
+}
+.top {
+  margin-top: 20rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-icon": "/lib/vant/icon/index",
+    "van-sticky": "/lib/vant/sticky/index"
+  }
+}

@@ -1,0 +1,100 @@
+.head {
+  padding-top: 40rpx;
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: white;
+}
+
+.all {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0px;
+  background-size: 100% 100%;
+  filter: blur(200rpx);
+  z-index: -99;
+}
+
+.head image {
+  display: block;
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 20rpx;
+}
+
+.title {
+  width: 400rpx;
+}
+
+.back {
+  padding: 0 10rpx;
+}
+
+.more {
+  padding: 0 10rpx;
+}
+
+.top {
+  padding: 30rpx;
+}
+.desc {
+  display: flex;
+}
+.before image {
+  display: block;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 20rpx;
+}
+.creatorAvatar image {
+  display: block;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+}
+.moreInfo image {
+  display: block;
+  width: 28rpx;
+  height: 28rpx;
+}
+.icon1 {
+  margin-top: 18rpx; 
+  margin-left: 10rpx;
+}
+.word {
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 270rpx;
+  font-size: 24rpx;
+}
+.center {
+  display: flex;
+  margin: 20rpx 0;
+  line-height: 64rpx;
+  color: white
+}
+.description {
+  display: flex; 
+  color: #ccc;
+  justify-content: space-between;
+}
+.playlistName {
+  color: white;
+  font-weight: bold; 
+  font-size: 36rpx;
+}
+.after {
+margin-left: 30rpx;
+}
+.icon2 {
+  margin-top: 28rpx;
+}

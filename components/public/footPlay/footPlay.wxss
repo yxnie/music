@@ -1,0 +1,52 @@
+.foot {
+  position: fixed;
+  bottom: 0;
+  height: 80rpx;
+  background: white;
+  border-top: 2rpx solid #a8a8a8;
+  width: 100%;
+}
+
+.foot image {
+  width: 70rpx;
+  height: 70rpx;
+  display: block;
+  margin-top: 7rpx;
+}
+.one {
+  display: flex;
+  width: 94%;
+  margin: 0 3%;
+}
+.pic {
+
+}
+.pic image {
+  border-radius: 50%;
+}
+.word {
+  flex: 1;
+  margin-left: 10rpx;
+}
+.circle {
+position: relative;
+margin-top: 7rpx;
+}
+.circle image {
+position: absolute;
+z-index: 99;
+top: 12rpx;
+left: 16rpx;
+height: 34rpx;
+width: 34rpx;
+}
+.last {
+  margin-left: 30rpx;
+}
+.name {
+
+}
+.singer {
+  font-size: 24rpx;
+  color: #a8a8a8;
+}

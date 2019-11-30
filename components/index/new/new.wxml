@@ -1,0 +1,34 @@
+<view class="title">
+  <view class="left">
+    <view class="new {{lock?'check':''}}" bindtap="checkDisc">新碟</view>
+    <view class="new {{!lock?'check':''}}" bindtap="checkSong">新歌</view>
+  </view>
+  <view class="right">
+    <view wx:if="{{lock}}">更多新碟</view>
+    <view wx:else>更多新歌</view>
+  </view>
+</view>
+<view>
+  <view wx:if="{{lock}}" class="all">
+    <view wx:for="{{newDisc}}" wx:key="{{index}}" class="recommendone">
+      <view class="playCount">
+        <image src="../../../images/play2.png"></image>
+      </view>
+      <view>
+        <image src="{{item.blurPicUrl}}"></image>
+      </view>
+      <view class="name">{{item.name}}</view>
+    </view>
+  </view>
+  <view wx:else class="all">
+    <view wx:for="{{newSong}}" wx:key="{{index}}" class="recommendone">
+      <view class="playCount">
+        <image src="../../../images/play.png"></image>
+      </view>
+      <view>
+        <image src="{{item.album.blurPicUrl}}"></image>
+      </view>
+      <view class="name">{{item.album.name}}</view>
+    </view>
+  </view>
+</view>

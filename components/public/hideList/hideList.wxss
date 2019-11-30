@@ -1,0 +1,60 @@
+.all image {
+  height: 50rpx;
+  width: 50rpx;
+  display: block;
+}
+.top {
+  position: relative;
+  display: flex;
+  padding: 30rpx;
+  justify-content: space-between;
+  border-bottom:2rpx solid #8a8a8a; 
+}
+.delter {
+  position: absolute;
+  right: 30rpx;
+}
+.model {
+  display: flex;
+}
+
+.modelWord {
+  margin: 0 15rpx;
+}
+
+.after {
+  display: flex;
+  margin-right: 80rpx;
+}
+.add {
+  margin-right: 15rpx;
+}
+
+.list {
+  margin: 0 30rpx;
+  padding-top: 4rpx;
+}
+.one {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.before {
+  display: flex;
+}
+.oneword {
+  margin-left: 14rpx;
+  color: black;
+}
+.author {
+  color: #8a8a8a;
+  font-size: 26rpx;
+}
+.one image {
+  height: 40rpx;
+  width: 40rpx;
+  display: block;
+}
+.red {
+  color: #d81e06 !important;
+}

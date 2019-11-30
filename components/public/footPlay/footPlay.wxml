@@ -1,0 +1,62 @@
+<view class="foot">
+  <block wx:if="{{songIndex>-1}}">
+    <swiper current="{{songIndex}}" circular="{{true}}" bindchange="changeSong">
+      <block wx:for="{{list}}" wx:key="index">
+        <swiper-item>
+          <view class="one">
+            <view class="pic">
+              <image src="{{item.al.picUrl}}"></image>
+            </view>
+            <view class="word">
+              <view class="name">{{item.name}}</view>
+              <view class="singer">{{item.ar[0].name}}</view>
+            </view>
+            <view class="circle">
+              <view>
+                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
+                <image src="../../../images/footpause.png"></image>
+              </view>
+              <view wx:if="{{false}}">
+                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#515151" />
+                <image src="../../../images/footplay.png"></image>
+              </view>
+            </view>
+            <view class="last">
+              <image src="../../../images/footlist.png" bindtap="openShow"></image>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </block>
+  <block wx:else>
+    <swiper current="{{songIndexs}}" circular="{{true}}" bindchange="changeSong">
+      <block wx:for="{{showlist}}" wx:key="index">
+        <swiper-item>
+          <view class="one">
+            <view class="pic">
+              <image src="{{item.al.picUrl}}"></image>
+            </view>
+            <view class="word">
+              <view class="name">{{item.name}}</view>
+              <view class="singer">{{item.ar[0].name}}</view>
+            </view>
+            <view class="circle">
+              <view>
+                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
+                <image src="../../../images/footpause.png"></image>
+              </view>
+              <view wx:if="{{false}}">
+                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#515151" />
+                <image src="../../../images/footplay.png"></image>
+              </view>
+            </view>
+            <view class="last">
+              <image src="../../../images/footlist.png" bindtap="openShow"></image>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </block>
+</view>

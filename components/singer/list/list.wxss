@@ -1,0 +1,25 @@
+.singer image {
+  display: block;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(105, 105, 105, 0.5);
+}
+.one {
+  display: flex;
+  margin: 40rpx 60rpx;
+}
+.name {
+  line-height: 144rpx;
+  font-size: 38rpx;
+  margin-left: 50rpx;
+  overflow: hidden;
+  width: 438rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.foot {
+  text-align: center;
+  margin: 40rpx 0;
+}

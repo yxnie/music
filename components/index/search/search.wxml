@@ -1,0 +1,5 @@
+<view class="top">
+<view class="before">音乐馆</view>
+<view class="search"><van-search value="{{ value }}" placeholder="请输入搜索关键词" /></view>
+<view><image src="../../../images/music.png"></image></view>
+</view>

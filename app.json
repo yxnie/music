@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/singer/singer",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/songlistDetail/songlistDetail",
+    "pages/edit/edit",
+    "pages/song/song"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "c20c0c",
+    "navigationBarTitleText": "网易云音乐",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#c20c0c",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "网易云音乐",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homeRed.png"
+      },
+      {
+        "pagePath": "pages/singer/singer",
+        "text": "歌手",
+        "iconPath": "images/microphone.png",
+        "selectedIconPath": "images/microphoneRed.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/myRed.png"
+      }
+    ]
+  },
+  "usingComponents":{
+    "van-button":"lib/vant/button/index"
+  },
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

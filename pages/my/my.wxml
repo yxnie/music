@@ -1,0 +1,43 @@
+<view wx:if="{{uid}}" class="all">
+  <view class="top">
+    <view class="before">
+      <image src="{{user.profile.avatarUrl}}"></image>
+      <view class="center">
+        <view class="nickname">{{nickname}}</view>
+        <view class="level">Lv: {{user.level}}</view>
+      </view>
+    </view>
+    <view class="after" bindtap="signIn">签到</view>
+  </view>
+  <view class="content">
+    <view class="one">
+      <view class="num">{{user.profile.eventCount}}</view>
+      <view class="desc">动态</view>
+    </view>
+    <view class="one">
+      <view class="num">{{user.profile.follows}}</view>
+      <view class="desc">关注</view>
+    </view>
+    <view class="one">
+      <view class="num">{{user.profile.followeds}}</view>
+      <view class="desc">粉丝</view>
+    </view>
+    <view class="one" bindtap="edit">
+      <view class="num">
+        <van-icon name="edit" size="42rpx" />
+      </view>
+      <view class="desc">编辑资料</view>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="out" bindtap="logOut">退出登录</view>
+  </view>
+</view>
+<view class="nologin" wx:else>
+  <view class="word">
+    您还没有登录哦
+  </view>
+  <view class="login">
+    <van-button type="info" size="large" bind:click="goLogin">立即登录</van-button>
+  </view>
+</view>

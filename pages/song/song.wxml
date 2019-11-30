@@ -1,0 +1,34 @@
+<view style="background-image: url('{{data.songs[0].al.picUrl}}')" class="bg"></view>
+<view class="title">
+<view class="name">{{data.songs[0].name}}</view>
+<view>{{data.songs[0].al.name}}</view>
+<view class="img"><image src="{{data.songs[0].al.picUrl}}"></image></view>
+</view>
+<collect></collect>
+<view></view>
+<view class="progress custom-class">
+  <view class="nowTime">{{nowTime}}</view>
+  <van-slider value="{{progress}}" bind:change="onChange" />
+  <view class="allTime">{{allTime}}</view>
+</view>
+<view class="play">
+  <view class="circulation">
+    <image src="../../images/circulation.png" bindtap="editOrder" data-item="2" wx:if="{{order==='1'}}"></image>
+    <image src="../../images/random.png" wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3"></image>
+    <image src="../../images/circulationone.png" wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1"></image>
+  </view>
+  <view>
+    <image src="../../images/last.png" bindtap="lastSong"></image>
+  </view>
+  <view class="center">
+    <image src="../../images/pause.png" bindtap="pause" wx:if="{{!pauseLock}}"></image>
+    <image src="../../images/songplay.png" wx:else bindtap="play"></image>
+  </view>
+  <view>
+    <image src="../../images/next.png" bindtap="nextSong"></image>
+  </view>
+  <view>
+    <image src="../../images/playlist.png" bindtap="openShow"></image>
+  </view>
+</view>
+<hideList show="{{show}}" bind:myevent="editShow"></hideList>

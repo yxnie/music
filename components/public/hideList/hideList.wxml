@@ -1,0 +1,45 @@
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 65%;" bind:close="onClose" round>
+  <view class="all">
+    <view class="top">
+      <view class="delter">
+        <image src="../../../images/delter.png"></image>
+      </view>
+      <view class="model">
+        <view>
+          <image src="../../../images/circulation1.png" bindtap="editOrder" data-item="2" wx:if="{{order==='1'}}"></image>
+          <image src="../../../images/random1.png" wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3"></image>
+          <image src="../../../images/circulationone1.png" wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1"></image>
+        </view>
+        <view class="modelWord">
+          <view wx:if="{{order==='1'}}">列表循环</view>
+          <view wx:if="{{order==='2'}}">随机播放</view>
+          <view wx:if="{{order==='3'}}">单曲循环</view>
+        </view>
+        <view>({{list.length}})</view>
+      </view>
+      <view class="after">
+        <view class="add">
+          <image src="../../../images/add.png"></image>
+        </view>
+        <view>收藏全部</view>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" style="height:675rpx">
+      <view class="list">
+        <view wx:for="{{list}}" wx:key="{{index}}" class="one">
+          <view class="before">
+            <view wx:if="{{index===songIndex}}">
+              <image src="../../../images/horm.png"></image>
+            </view>
+            <view class="oneword {{index===songIndex?'red':''}}">
+              <text>{{item.name}}</text><text class="author {{index===songIndex?'red':''}}"> - {{item.ar[0].name}}</text>
+            </view>
+          </view>
+          <view>
+            <image src="../../../images/fork.png"></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</van-popup>

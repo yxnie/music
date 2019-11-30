@@ -1,0 +1,43 @@
+<view class="all">
+  <view class="one">
+    <view>昵称</view>
+    <input value="{{user.profile.nickname}}" bindblur="editNickname" confirm-type="done" bindconfirm="editNickname"></input>
+  </view>
+  <view class="one" bindtap="editSex">
+    <view>性别</view>
+    <view wx:if="{{user.profile.gender===0}}">保密</view>
+    <view wx:if="{{user.profile.gender===1}}">男</view>
+    <view wx:if="{{user.profile.gender===2}}">女</view>
+    <van-icon name="arrow" class="icon" />
+  </view>
+  <view class="one" bindtap="editBrithday">
+    <view>生日</view>
+    <view>{{brithday}}</view>
+    <van-icon name="arrow" class="icon" />
+  </view>
+  <view class="one" bindtap="editArea">
+    <view>城市</view>
+    <view>{{area.province_list[user.profile.province]}}{{area.city_list[user.profile.city]}}</view>
+    <van-icon name="arrow" class="icon" />
+  </view>
+  <view>
+    <view>签名</view>
+    <textarea placeholder="您还没有个性签名哦，赶快书写一个吧" class="signature"  bindinput="editSignature" value="{{user.profile.signature}}" bindconfirm="editSignature"></textarea>
+  </view>
+  <view class="foot">
+    <view class="but" bindtap="amend">确认修改</view>
+  </view>
+</view>
+<van-popup show="{{ sexShow }}" position="bottom" custom-style="height: 20%;" bind:close="onClose">
+  <view>
+    <view bindtap="checkSex" data-item="0" class="sex {{user.profile.gender===0?'checkedSex':''}}">保密</view>
+    <view bindtap="checkSex" data-item="1" class="sex {{user.profile.gender===1?'checkedSex':''}}">男</view>
+    <view bindtap="checkSex" data-item="2" class="sex {{user.profile.gender===2?'checkedSex':''}}">女</view>
+  </view>
+</van-popup>
+<van-popup show="{{ brithdayShow }}" position="bottom" custom-style="height: 50%;" bind:close="onClose">
+<van-datetime-picker type="date" value="{{ brithdayTime }}" min-date="{{ minDate }}" formatter="{{ formatter }}" bind:confirm="brithdayConfirm" bind:cancel="brithdayCancel" />
+</van-popup>
+<van-popup show="{{ areaShow }}" position="bottom" custom-style="height: 50%;" bind:close="onClose">
+<van-area area-list="{{ area }}" columns-num="{{ 2 }}" value="{{user.profile.province}}{{user.profile.city}}" bind:confirm="areaConfirm" bind:cancel="areaCancel" />
+</van-popup>

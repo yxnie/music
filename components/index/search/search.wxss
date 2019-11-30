@@ -1,0 +1,17 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin: 10rpx 26rpx;
+}
+.before {
+  font-size: 40rpx;
+  position: relative;
+  top: 20rpx;
+}
+.top image {
+  display: block;
+  width: 68rpx;
+  height: 68rpx;
+  position: relative;
+  top: 20rpx;
+}
