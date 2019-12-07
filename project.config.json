@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -97,6 +97,27 @@
 					"name": "pages/song/song",
 					"pathName": "pages/song/song",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/singerDetail/singerDetail",
+					"pathName": "pages/singerDetail/singerDetail",
+					"query": "id=5781",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/albumDetail/albumDetail",
+					"pathName": "pages/albumDetail/albumDetail",
+					"query": "id=80003734",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "pages/djProgram/djProgram",
+					"pathName": "pages/djProgram/djProgram",
+					"query": "id=2064409347&rid=794322465",
 					"scene": null
 				}
 			]

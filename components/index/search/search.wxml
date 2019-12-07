@@ -1,5 +1,82 @@
-<view class="top">
-<view class="before">音乐馆</view>
-<view class="search"><van-search value="{{ value }}" placeholder="请输入搜索关键词" /></view>
-<view><image src="../../../images/music.png"></image></view>
+<view class="wrap">
+  <view class="top">
+    <view class="back" bindtap="back">
+      <image src="../../../images/backHome.png"></image>
+    </view>
+    <view class="input">
+      <input bindinput="search" value="{{inputValue}}" placeholder="{{keyword}}" confirm-type="search" bindconfirm="goSearch" auto-focus></input>
+    </view>
+    <view>
+      <image src="../../../images/singer.png" class="singerImg" wx:if="{{hotLock}}"></image>
+      <van-icon name="cross" size="60rpx" wx:else bindtap="backHot" />
+    </view>
+  </view>
+  <view class="over" wx:if="{{show}}" bindtap="onClickHide">
+    <view class="searchContent">
+      <view class="title">搜索"{{inputValue}}"</view>
+      <view wx:for="{{suggest}}" wx:key="{{index}}" class="suggestOne" catchtap="checkSuggest" data-item="{{item.keyword}}">
+        <view>
+          <image src="../../../images/search.png"></image>
+        </view>
+        <view>{{item.keyword}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{hotLock}}" class="wrap">
+  <view class="banner">
+    <image src="{{imgUrl.pic}}"></image>
+  </view>
+  <view class="history" wx:if="{{history.length}}">
+    <view>历史记录</view>
+    <view bindtap="removeHistory">
+      <image src="../../../images/delter.png"></image>
+    </view>
+  </view>
+  <scroll-view style="height: 84rpx;" scroll-x="true" class="history" wx:if="{{history.length}}">
+    <view class="searchList" wx:for="{{history}}" wx:key="{{index}}">
+      <view>{{item}}</view>
+    </view>
+  </scroll-view>
+  <view class="history">热搜榜</view>
+  <view>
+    <view wx:for="{{hotList}}" wx:key="{{index}}" class="hotList" bindtap="checkSuggest" data-item="{{item.searchWord}}">
+      <view class=" index {{index<3?'red':''}}">{{index+1}}</view>
+      <view class="content">
+        <view class="{{index<3?'bold':''}} searchWord">
+          <view>{{item.searchWord}}</view>
+          <view wx:if="{{item.iconType===1}}" class="hot">HOT</view>
+          <view wx:if="{{item.iconType===10}}" class="new">NEW</view>
+          <view wx:if="{{item.iconType===5}}" class="up">
+            <image src="../../../images/up.png"></image>
+          </view>
+        </view>
+        <view class="itemContent">{{item.content}}</view>
+      </view>
+      <view class="itemContent">{{item.score}}</view>
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <scroll-view style="height: 84rpx;" scroll-x="true" class="bar">
+    <view class="barAll">
+      <view wx:for="{{bar}}" wx:key="{{index}}" class="barOne {{type===item.type?'bottomRed':''}}" data-type="{{item.type}}" bindtap="checkType">
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+  <scroll-view bindscrolltolower="scrollToLower" style="height: 900rpx;" scroll-y="true">
+  <view wx:if="{{errLock}}">
+  <all data="{{data}}" wx:if="{{type===1018}}"></all>
+    <single data="{{dataList}}" wx:if="{{type===1}}"></single>
+    <vedio data="{{dataList}}" wx:if="{{type===1014}}"></vedio>
+    <singer data="{{dataList}}" wx:if="{{type===100}}"></singer>
+    <albums data="{{dataList}}" wx:if="{{type===10}}"></albums>
+    <playlists data="{{dataList}}" wx:if="{{type===1000}}"></playlists>
+    <djRadios data="{{dataList}}" wx:if="{{type===1009}}"></djRadios>
+    <userprofiles data="{{dataList}}" wx:if="{{type===1002}}"></userprofiles>
+    <mv data="{{dataList}}" wx:if="{{type===1004}}"></mv>
+  </view>
+  <view wx:else class="none">暂无数据</view>
+  </scroll-view>
 </view>

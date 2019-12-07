@@ -41,6 +41,7 @@
 }
 .before {
   display: flex;
+  flex: 1;
 }
 .oneword {
   margin-left: 14rpx;

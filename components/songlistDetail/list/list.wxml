@@ -1,11 +1,13 @@
 <view class="content">
     <view class="one">
       <view class="num"><image src="../../../images/comment-lines.png"></image></view>
-      <view class="desc">{{data.commentCount}}</view>
+      <view class="desc" wx:if="{{data.commentCount}}">{{data.commentCount}}</view>
+      <view class="desc" wx:if="{{data.info.commentCount}}">{{data.info.commentCount}}</view>
     </view>
     <view class="one">
       <view class="num"><image src="../../../images/share.png"></image></view>
-      <view class="desc">{{data.shareCount}}</view>
+      <view class="desc" wx:if="{{data.shareCount}}">{{data.shareCount}}</view>
+      <view class="desc" wx:if="{{data.info.shareCount}}">{{data.info.shareCount}}</view>
     </view>
     <view class="one">
       <view class="num"><image src="../../../images/down.png"></image></view>

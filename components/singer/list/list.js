@@ -9,7 +9,7 @@ Component({
       value: () => []
     }
   },
-
+  
   /**
    * 组件的初始数据
    */
@@ -21,6 +21,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    goSingerDetail(e){
+      // console.log(e.currentTarget.dataset.item.id)
+      wx.navigateTo({
+        url: `/pages/singerDetail/singerDetail?id=${e.currentTarget.dataset.item.id}`
+      })
+    }
   }
 })

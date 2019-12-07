@@ -1,9 +1,8 @@
+@import "/app.wxss";
 .title {
   display: flex;
   justify-content: space-between;
   padding: 20rpx;
-  /* position: relative;
-  top: -40rpx; */
   border-radius: 40rpx 40rpx 0 0;
   background: white;
   width: 711rpx;
@@ -46,8 +45,6 @@
 }
 .songlist {
   padding: 20rpx;
-  /* position: relative;
-  top: -40rpx; */
   background: white;
 }
 .song image {

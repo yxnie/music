@@ -31,4 +31,4 @@
     <image src="../../images/playlist.png" bindtap="openShow"></image>
   </view>
 </view>
-<hideList show="{{show}}" bind:myevent="editShow"></hideList>
+<hideList show="{{show}}" bind:myevent="editShow" order="{{order}}"  bind:editorder="editorder"></hideList>

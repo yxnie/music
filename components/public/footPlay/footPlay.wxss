@@ -13,39 +13,55 @@
   display: block;
   margin-top: 7rpx;
 }
+
 .one {
   display: flex;
   width: 94%;
   margin: 0 3%;
 }
-.pic {
 
+.pic {
 }
+
 .pic image {
   border-radius: 50%;
 }
+
 .word {
   flex: 1;
   margin-left: 10rpx;
 }
+
 .circle {
-position: relative;
-margin-top: 7rpx;
+  position: relative;
+  margin-top: 7rpx;
+  width: 68rpx;
+  height: 68rpx;
 }
+
 .circle image {
-position: absolute;
-z-index: 99;
-top: 12rpx;
-left: 16rpx;
-height: 34rpx;
-width: 34rpx;
+  position: absolute;
+  z-index: 99;
+  top: 12rpx;
+  left: 20rpx;
+  height: 34rpx;
+  width: 34rpx;
 }
+.footplay {
+  top: 10rpx !important;
+}
+.pause {
+  height: 30rpx !important;
+  width: 30rpx !important;
+}
+
 .last {
   margin-left: 30rpx;
 }
-.name {
 
+.name {
 }
+
 .singer {
   font-size: 24rpx;
   color: #a8a8a8;

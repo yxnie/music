@@ -1,6 +1,15 @@
 {
   "component": true,
   "usingComponents": {
-    "van-search":"../../../lib/vant/search/index"
+    "all": "../all/all",
+    "single": "../single/single",
+    "vedio": "../vedio/vedio",
+    "singer":"../singer/singer",
+    "albums": "../albums/albums",
+    "playlists": "../playlists/playlists",
+    "djRadios": "../djRadios/djRadios",
+    "userprofiles": "../userprofiles/userprofiles",
+    "mv": "../mv/mv",
+    "van-icon": "/lib/vant/icon/index"
   }
 }

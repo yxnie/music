@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "van-circle": "/lib/vant/circle/index"
+    "van-circle": "/lib/vant/circle/index",
+    "hideList": "../../components/public/hideList/hideList"
   }
 }

@@ -117,7 +117,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.length = this.data.limit) {
+    if (this.data.length === this.data.limit) {
       this.setData({
         start: this.data.limit * 1 + this.data.start * 1
       })

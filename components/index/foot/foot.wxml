@@ -1,6 +1,6 @@
 <view class="all">
   <view wx:for="{{data}}" wx:key="{{index}}" class="recommendone">
-    <view wx:if="{{item.picUrl}}">
+    <view wx:if="{{item.picUrl}}" bindtap="goDj" data-id="{{item.id}}" data-rid="{{item.program.radio.id}}">
       <image src="{{item.picUrl}}"></image>
     </view>
     <view wx:if="{{item.blurCoverUrl}}">

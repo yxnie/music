@@ -7,7 +7,10 @@
     "pages/register/register",
     "pages/songlistDetail/songlistDetail",
     "pages/edit/edit",
-    "pages/song/song"
+    "pages/song/song",
+    "pages/singerDetail/singerDetail",
+    "pages/albumDetail/albumDetail",
+    "pages/djProgram/djProgram"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,8 +42,8 @@
       }
     ]
   },
-  "usingComponents":{
-    "van-button":"lib/vant/button/index"
+  "usingComponents": {
+    "van-button": "lib/vant/button/index"
   },
   "requiredBackgroundModes": [
     "audio",

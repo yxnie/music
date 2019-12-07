@@ -1,4 +1,5 @@
 // components/index/foot/foot.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -21,6 +22,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    goDj(e){
+      // console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: `/pages/djProgram/djProgram?id=${e.currentTarget.dataset.id}&rid=${e.currentTarget.dataset.rid}`
+      })
+    }
   }
 })

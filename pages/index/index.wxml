@@ -1,5 +1,13 @@
-<search></search>
-<view class="wrap">
+<view class="top"  wx:if="{{!searchLock}}">
+  <view class="before">音乐馆</view>
+  <view class="search">
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:focus="openSearch" />
+  </view>
+  <view>
+    <image src="../../images/music.png"></image>
+  </view>
+</view>
+<view class="wrap"  wx:if="{{!searchLock}}">
   <banner></banner>
   <list></list>
   <view class="title">
@@ -17,10 +25,12 @@
     <view class="left">推荐电台</view>
     <view class="right">电台广场</view>
   </view>
- <foot data="{{djprogram}}"></foot>
+  <foot data="{{djprogram}}"></foot>
   <view class="title">
     <view class="left">推荐节目</view>
     <view class="right">更多节目</view>
   </view>
   <foot data="{{program}}"></foot>
 </view>
+<search wx:if="{{searchLock}}" bind:editSearchLock="editSearchLock"></search>
+<footPlay wx:if="{{songlist}}"></footPlay>

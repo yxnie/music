@@ -17,7 +17,7 @@ Page({
     progress: null,
     pauseLock: false,
     all: null,
-    order:"1",
+    order:"",
     now:null,
     show:false
   },
@@ -26,6 +26,12 @@ Page({
       order: e.currentTarget.dataset.item
     })
     wx.setStorageSync("order", e.currentTarget.dataset.item)
+  },
+  editorder(e) {
+    // console.log(e,2)
+    this.setData({
+      order: e.detail
+    })
   },
   getdata(id) {
     app.globalData.fly.get(`/song/detail?ids=${id}`).then(res => {
@@ -39,7 +45,6 @@ Page({
     }).catch(err => {
       console.log(err)
     })
-    
   },
   getUrl(id){
     wx.showLoading({
@@ -52,7 +57,7 @@ Page({
           dataUrl: res.data.data[0],
         })
         this.backgroundAudioManager()
-        // console.log(this.data.dataUrl)
+        // console.log(this.data.dataUrl.url,1)
       }
       wx.hideLoading()
     }).catch(err => {
@@ -74,8 +79,10 @@ Page({
   },
   nextSong() {
     if (this.data.order === "2") {
+      // console.log(this.data.order)
       this.data.index = Math.floor(Math.random() * this.data.songlist.length)
     }else {
+      // console.log(this.data.order)
       this.data.index++
       if (this.data.index > this.data.songlist.length - 1) {
         this.data.index = 0
@@ -106,6 +113,7 @@ Page({
     if (this.data.backgroundAudio){
       this.data.backgroundAudio.stop()
     }
+    // console.log(this.data.dataUrl.url,2)
     let backgroundAudio = wx.getBackgroundAudioManager()
     backgroundAudio.src = this.data.dataUrl.url
     backgroundAudio.title = this.data.data.songs[0].name
@@ -113,20 +121,21 @@ Page({
     this.setData({
       backgroundAudio,
     })
+    // console.log(this.data.backgroundAudio)
     this.data.backgroundAudio.onTimeUpdate(() => {
       this.setData({
         all: this.data.backgroundAudio.duration,
-        now: this.data.backgroundAudio.currentTime,
         nowTime: this.editTime(this.data.backgroundAudio.currentTime),
         allTime: this.editTime(this.data.backgroundAudio.duration),
         progress: this.data.backgroundAudio.currentTime / this.data.backgroundAudio.duration * 100
       })
-      if (this.data.all === this.data.now){
-        if (this.data.order === "3"){
-          this.getdata(this.data.songlist[this.data.index].id)
-        }else {
-          this.nextSong()
-        }
+    })
+    this.data.backgroundAudio.onEnded(() => {
+      // console.log(this.data.order)
+      if (this.data.order === "3") {
+        this.getdata(this.data.songlist[this.data.index].id)
+      } else {
+        this.nextSong()
       }
     })
   },
@@ -144,13 +153,13 @@ Page({
   editTime(time) {
     let t = Math.round(time)
     if (t / 60 < 10) {
-      if (t % 60 > 10) {
+      if (t % 60 > 9) {
         return `0${Math.floor(t / 60)} : ${t % 60}`
       } else {
         return `0${Math.floor(t / 60)} : 0${t % 60}`
       }
     } else {
-      if (t % 60 > 10) {
+      if (t % 60 > 9) {
         return `${Math.floor(t / 60)} : ${t % 60}`
       } else {
         return `${Math.floor(t / 60)} : 0${t % 60}`
@@ -163,9 +172,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       songlist: wx.getStorageSync("songlist"),
-      index: wx.getStorageSync("index")
+      index: wx.getStorageSync("index"),
+      order: wx.getStorageSync("order")
     })
-    console.log(this.data.songlist, this.data.index)
+    // console.log(this.data.songlist, this.data.index)
     this.getdata(this.data.songlist[this.data.index].id)
   },
 

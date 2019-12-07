@@ -1,11 +1,13 @@
 {
   "usingComponents": {
-    "search":"../../components/index/search/search",
+    "search": "../../components/index/search/search",
     "banner": "../../components/index/banner/banner",
     "list": "../../components/index/list/list",
     "recommend":"../../components/index/recommend/recommend",
     "new": "../../components/index/new/new",
     "musicNewPower": "../../components/index/musicNewPower/musicNewPower",
-    "foot": "../../components/index/foot/foot"
+    "foot": "../../components/index/foot/foot",
+    "van-search": "/lib/vant/search/index",
+    "footPlay": "../../components/public/footPlay/footPlay"
   }
 }

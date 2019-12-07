@@ -8,7 +8,9 @@ Page({
     recommend:[],
     musicNewPower:[],
     djprogram:[],
-    program:[]
+    program:[],
+    searchLock:false,
+    songlist:null
   },
   //推荐歌单
   getData() {
@@ -18,7 +20,7 @@ Page({
         res.data.result.map(item => {
           if (item.playCount>100000000){
             item.playCount = (item.playCount / 100000000).toFixed(2)+'亿'
-          } else if (item.playCount > 10000) {
+          } else if (item.playCount > 100000) {
             item.playCount = Math.floor(item.playCount / 10000) + '万'
           }
         })
@@ -60,12 +62,25 @@ Page({
       console.log(err)
     })
   },
-
+  openSearch(){
+    this.setData({
+      searchLock: true
+    })
+  },
+  editSearchLock(){
+    this.setData({
+      searchLock: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getData()
+    this.setData({
+      songlist: wx.getStorageSync('songlist')
+    })
+    
   },
 
   /**

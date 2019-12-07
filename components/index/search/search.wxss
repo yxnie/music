@@ -1,17 +1,195 @@
+.top image {
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+}
+
+.singerImg {
+  width: 60rpx !important;
+  height: 60rpx !important;
+}
+
 .top {
   display: flex;
-  justify-content: space-between;
-  margin: 10rpx 26rpx;
 }
-.before {
-  font-size: 40rpx;
-  position: relative;
-  top: 20rpx;
+
+.wrap {
+  padding: 30rpx;
 }
-.top image {
+
+.input {
+  flex: 1;
+  border-bottom: 2rpx solid black;
+  margin-right: 20rpx;
+}
+
+.input input {
+  margin-top: 10rpx;
+}
+
+.back {
+  margin-right: 20rpx;
+}
+
+.banner {
+  width: 100%;
+  height: 100rpx;
+  margin-bottom: 40rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
   display: block;
-  width: 68rpx;
-  height: 68rpx;
+  border-radius: 14rpx;
+}
+
+.history {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin: 30rpx 0;
+}
+
+.history image {
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+}
+
+.up image {
+  width: 42rpx;
+  height: 42rpx;
+  display: block;
+}
+
+.content {
+  flex: 1;
+}
+
+.hot {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 20rpx;
+}
+
+.new {
+  color: green;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 20rpx;
+}
+
+.searchWord {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.red {
+  color: red;
+}
+
+.hotList {
+  display: flex;
+  justify-content: space-between;
+  margin: 30rpx 0;
+}
+
+.up {
+  margin-left: 20rpx;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.index {
+  width: 60rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  line-height: 96rpx;
+}
+
+.itemContent {
+  color: #999;
+  font-size: 26rpx;
+}
+
+.over {
+  position: absolute;
+  z-index: 99;
+  left: 30rpx;
+  top: 100rpx;
+  bottom: 0;
+  width: 100%;
+}
+
+.searchContent {
+  width: 600rpx;
+  background: white;
+  box-shadow: 0rpx 10rpx 26rpx #aaa;
+}
+
+.title {
+  color: rgb(21, 131, 131);
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #ccc;
+  padding: 0 20rpx;
+}
+
+.suggestOne {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #ccc;
+  padding: 0 20rpx;
+  display: flex;
+}
+
+.suggestOne image {
+  height: 36rpx;
+  width: 36rpx;
+  display: block;
+  margin-right: 20rpx;
   position: relative;
-  top: 20rpx;
+  top: 18rpx;
+}
+
+.barOne {
+  display: inline-block;
+  line-height: 80rpx;
+  margin: 0 30rpx;
+}
+
+.barAll {
+  height: 80rpx;
+  white-space: nowrap;
+}
+
+.bottomRed {
+  border-bottom: 4rpx solid red;
+}
+
+.bar {
+  border-bottom: 2rpx solid #ccc;
+}
+
+.searchList {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin-right: 20rpx;
+  background: rgba(150, 150, 150, 0.5);
+  color: white;
+  border-radius: 31rpx;
+  margin-top: 10rpx
+}
+
+.history {
+  white-space: nowrap;
+}
+.none {
+  text-align: center;
+  margin-top: 100rpx;
+  font-size: 38rpx;
 }

@@ -4,21 +4,20 @@
       <block wx:for="{{list}}" wx:key="index">
         <swiper-item>
           <view class="one">
-            <view class="pic">
+            <view class="pic" bindtap="goSong">
               <image src="{{item.al.picUrl}}"></image>
             </view>
-            <view class="word">
+            <view class="word" bindtap="goSong">
               <view class="name">{{item.name}}</view>
               <view class="singer">{{item.ar[0].name}}</view>
             </view>
-            <view class="circle">
-              <view>
-                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
-                <image src="../../../images/footpause.png"></image>
+            <view class="circle" bindtap="playSong">
+            <van-circle value="{{ progress }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
+              <view wx:if="{{play}}">
+                <image src="../../../images/footpause.png" class="pause"></image>
               </view>
-              <view wx:if="{{false}}">
-                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#515151" />
-                <image src="../../../images/footplay.png"></image>
+              <view wx:else>
+                <image src="../../../images/footplay.png" class="footplay"></image>
               </view>
             </view>
             <view class="last">
@@ -34,21 +33,20 @@
       <block wx:for="{{showlist}}" wx:key="index">
         <swiper-item>
           <view class="one">
-            <view class="pic">
+            <view class="pic" bindtap="goSong">
               <image src="{{item.al.picUrl}}"></image>
             </view>
-            <view class="word">
+            <view class="word" bindtap="goSong">
               <view class="name">{{item.name}}</view>
               <view class="singer">{{item.ar[0].name}}</view>
             </view>
-            <view class="circle">
-              <view>
-                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
-                <image src="../../../images/footpause.png"></image>
+            <view class="circle" bindtap="playSong">
+            <van-circle value="{{ progress }}" color="{{ gradientColor }}" size="34" layer-color="#a8a8a8" />
+              <view wx:if="{{play}}">
+                <image src="../../../images/footpause.png" class="pause"></image>
               </view>
-              <view wx:if="{{false}}">
-                <van-circle value="{{ value }}" color="{{ gradientColor }}" size="34" layer-color="#515151" />
-                <image src="../../../images/footplay.png"></image>
+              <view wx:else>
+                <image src="../../../images/footplay.png" class="footplay"></image>
               </view>
             </view>
             <view class="last">
@@ -60,3 +58,4 @@
     </swiper>
   </block>
 </view>
+<hideList show="{{show}}" bind:myevent="editShow" bind:editorder="editorder" order="{{order}}"></hideList>
