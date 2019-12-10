@@ -6,16 +6,16 @@
       </view>
       <view class="model">
         <view>
-          <image src="../../../images/circulation1.png" bindtap="editOrder" data-item="2" wx:if="{{order==='1'}}"></image>
-          <image src="../../../images/random1.png" wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3"></image>
-          <image src="../../../images/circulationone1.png" wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1"></image>
+          <image src="../../../images/circulation1.png" bindtap="editOrder" data-item="2" wx:if="{{$.order==='1'}}"></image>
+          <image src="../../../images/random1.png" wx:if="{{$.order==='2'}}" bindtap="editOrder" data-item="3"></image>
+          <image src="../../../images/circulationone1.png" wx:if="{{$.order==='3'}}" bindtap="editOrder" data-item="1"></image>
         </view>
         <view class="modelWord">
           <view wx:if="{{order==='1'}}" bindtap="editOrder" data-item="2">列表循环</view>
           <view wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3">随机播放</view>
           <view wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1">单曲循环</view>
         </view>
-        <view>({{list.length}})</view>
+        <view>({{$.singlist.length}})</view>
       </view>
       <view class="after" bindtap="collectAll">
         <view class="add">
@@ -26,13 +26,14 @@
     </view>
     <scroll-view scroll-y="true" style="height:755rpx">
       <view class="list">
-        <view wx:for="{{list}}" wx:key="{{index}}" class="one" bindtap="checkOne" data-index="{{index}}">
+        <view wx:for="{{$.singlist}}" wx:key="{{index}}" class="one" bindtap="checkOne" data-index="{{index}}">
           <view class="before">
-            <view wx:if="{{index===songIndex}}">
+            <view wx:if="{{index===$.index}}">
               <image src="../../../images/horm.png"></image>
             </view>
-            <view class="oneword {{index===songIndex?'red':''}}">
-              <text>{{item.name}}</text><text class="author {{index===songIndex?'red':''}}"> - {{item.ar[0].name}}</text>
+            <view class="oneword overflowOne {{index===songIndex?'red':''}}">
+              <text>{{item.name}}</text><text class="author {{index===songIndex?'red':''}}"  wx:if="{{djLock}}"> - {{item.ar[0].name}}</text>
+              <text class="author {{index===songIndex?'red':''}}"  wx:else> - {{item.ar[0].name}}</text>
             </view>
           </view>
           <view>

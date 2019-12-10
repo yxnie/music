@@ -1,12 +1,16 @@
 // components/songlistDetail/songlist/songlist.js
-Component({
+import create from '../../../utils/create'
+import store from '../../../store/index'
+create.Component(store, {
+  // 声明依赖
+  use: ['singlist','index'], //也支持复杂路径依赖，比如 ['list[0].name']
   /**
    * 组件的属性列表
    */
   properties: {
     data: {
       type: Object,
-      value: () => {}
+      value: () => { }
     },
     songIndex: {
       type: Number,
@@ -18,10 +22,10 @@ Component({
    * 组件的初始数据
    */
   data: {
-    id:null
+    id: null
   },
-  ready(){
-    if (wx.getStorageSync('songlist')){
+  ready() {
+    if (wx.getStorageSync('songlist')) {
       this.setData({
         id: wx.getStorageSync('songlist')[wx.getStorageSync('index')].id
       })
@@ -32,21 +36,22 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    play(e){
-      // console.log(e.currentTarget.dataset.id, e.currentTarget.dataset.index)
-      if (this.data.data.playlist){
+    play(e) {
+      if (this.data.data.playlist) {
         wx.setStorageSync('songlist', this.data.data.playlist.tracks)
+        this.store.data.singlist = this.data.data.playlist.tracks
       }
-      if (this.data.data.songs){
+      if (this.data.data.songs) {
         wx.setStorageSync('songlist', this.data.data.songs)
+        this.store.data.singlist = this.data.data.songs
       }
       wx.setStorageSync('index', e.currentTarget.dataset.index)
-      // this.triggerEvent('editIndex', e.currentTarget.dataset.index) 
-      if (this.data.id === e.currentTarget.dataset.id){
+      this.store.data.index = e.currentTarget.dataset.index
+      if (this.data.id === e.currentTarget.dataset.id) {
         wx.navigateTo({
           url: `/pages/song/song`
         })
-      }else {
+      } else {
         this.setData({
           id: e.currentTarget.dataset.id
         })

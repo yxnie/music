@@ -1,6 +1,10 @@
 // components/index/new/new.js
+import create from '../../../utils/create'
+import store from '../../../store/index'
 const app = getApp()
-Component({
+create.Component(store,{
+  // 声明依赖
+  use: ['singlist', 'index'], //也支持复杂路径依赖，比如 ['list[0].name']
   /**
    * 组件的属性列表
    */
@@ -16,11 +20,15 @@ Component({
     newSong: null,
     lock: true,
     songlock: false, //判断歌曲是否已在歌单
-    songIndex: null //判断歌曲是所在位置
+    songIndex: null, //判断歌曲是所在位置
+    id:null
   },
   ready() {
     this.getData()
     this.getNewSong()
+    if (wx.getStorageSync("songlist")){
+      this.data.id = wx.getStorageSync("songlist")[wx.getStorageSync("index")].id
+    }
   },
   /**
    * 组件的方法列表
@@ -34,32 +42,40 @@ Component({
     },
     play(e) {
       this.data.songlock = false
-      if (wx.getStorageSync("songlist")) {
-        let arr = wx.getStorageSync("songlist")
-        console.log(e.currentTarget.dataset.item.id)
-        arr.map((item, index) => {
-          if (item.id === e.currentTarget.dataset.item.id) {
-            this.data.songlock = true
-            this.data.songIndex = index
+      app.globalData.fly.get(`/song/detail?ids=${e.currentTarget.dataset.item.id}`).then(res => {
+        if (res.data.code === 200) {
+          if (this.store.data.singlist) {
+            this.store.data.singlist.map((item, index) => {
+              if (item.id === e.currentTarget.dataset.item.id) {
+                this.data.songlock = true
+                this.data.songIndex = index
+              }
+            })
+            if (this.data.songlock) {
+              wx.setStorageSync("index", this.data.songIndex)
+              this.store.data.index = this.data.songIndex
+            } else {
+              this.store.data.singlist.splice(this.store.data.index, 0, res.data.songs[0])
+              wx.setStorageSync("songlist", this.store.data.singlist)
+            }
+          } else {
+            this.store.data.singlist = res.data.songs
+            this.store.data.index = 0
+            wx.setStorageSync("songlist", res.data.songs)
+            wx.setStorageSync("index", 0)
           }
-        })
-        console.log(this.data.songlock, this.data.songIndex)
-        if (this.data.songlock) {
-          wx.setStorageSync("index", this.data.songIndex)
-        } else {
-          let index = wx.getStorageSync("index")
-          arr.splice(index,0, e.currentTarget.dataset.item)
-          // arr.unshift(e.currentTarget.dataset.item)
-          console.log(arr)
-          wx.setStorageSync("songlist", arr)
-          wx.setStorageSync("index", index)
+          if (this.data.id === e.currentTarget.dataset.item.id) {
+            wx.navigateTo({
+              url: `/pages/song/song`
+            })
+          } else {
+            this.setData({
+              id: e.currentTarget.dataset.item.id
+            })
+          }
         }
-      } else {
-        wx.setStorageSync("songlist", e.currentTarget.dataset.item)
-        wx.setStorageSync("index", 0)
-      }
-      wx.navigateTo({
-        url: `/pages/song/song`
+      }).catch(err => {
+        console.log(err)
       })
     },
     getData() {

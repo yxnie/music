@@ -1,18 +1,14 @@
 // components/public/footPlay/footPlay.js
+import create from '../../../utils/create'
+import store from '../../../store/index'
 const app = getApp()
-Component({
+create.Component(store, {
+  // 声明依赖
+  use: ['singlist', 'index', 'order', 'play', 'all', 'allTime', 'nowTime', 'progress'], //也支持复杂路径依赖，比如 ['list[0].name']
   /**
    * 组件的属性列表
    */
   properties: {
-    list: {
-      type: Array,
-      value: () => [],
-    },
-    songIndex: {
-      type: Number,
-      value: -2,
-    },
   },
   // observers:{
 
@@ -21,57 +17,52 @@ Component({
    * 组件的初始数据
    */
   data: {
-    showlist: null,
     value: 25,
     dataUrl: null,
-    pauseLock: false,
-    backgroundAudio: null,
     gradientColor: {
       '0%': '#a80006',
       '100%': '#f81e06'
     },
     show: false,
-    play: false,
-    songIndexs: null
+    djLock:false
   },
   ready() {
-    this.setData({
-      order: wx.getStorageSync("order")
-    })
-    this.getData()
-    // console.log(this.data.songIndex)
+    if (!this.store.data.index) {
+      this.store.data.index = wx.getStorageSync("index")
+      this.store.data.singlist = wx.getStorageSync("songlist")
+      this.store.data.order = wx.getStorageSync("order")
+    }
+    if (app.globalData.backgroundAudio){
+      this.setData({
+        play: app.globalData.backgroundAudio.paused
+      })
+    }
+    if (this.store.data.singlist){
+      if (this.store.data.singlist[this.store.data.index].radio) {
+        this.setData({
+          djLock: true
+        })
+      }
+    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    getData() {
-      this.setData({
-        showlist: wx.getStorageSync("songlist"),
-        songIndexs: wx.getStorageSync("index")
-      })
-      // console.log(this.data.showlist)
-      // console.log(this.data.songIndex)
-    },
     playSong() {
-      this.data.play = !this.data.play
-      this.setData({
-        play: this.data.play
-      })
-      console.log(this.data.play)
-      if (this.data.play) {
-        console.log(2)
-        if (!this.data.backgroundAudio) {
-          if (this.data.songIndex > -1) {
-            this.getUrl(this.data.list[this.data.songIndex].id)
+      this.store.data.play = !this.store.data.play
+      if (this.store.data.play) {
+        if (!this.store.data.backgroundAudio) {
+          if (this.data.djLock) {
+            this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
           } else {
-            this.getUrl(this.data.showlist[this.data.songIndexs].id)
+            this.getUrl(this.store.data.singlist[this.store.data.index].id)
           }
         } else {
-          this.data.backgroundAudio.play()
+          app.globalData.backgroundAudio.play()
         }
       } else {
-        this.data.backgroundAudio.pause()
+        app.globalData.backgroundAudio.pause()
       }
     },
     goSong() {
@@ -80,116 +71,113 @@ Component({
       })
     },
     changeSong(e) {
-      console.log(e.detail.current)
-      if (this.data.play) {
-        if (this.data.songIndex > -1) {
-          this.setData({
-            songIndex: e.detail.current
-          })
-          wx.setStorageSync("index", e.detail.current)
-          wx.setStorageSync("songlist", this.data.list)
-          this.getUrl(this.data.list[this.data.songIndex].id)
-        } else {
-          this.setData({
-            songIndexs: e.detail.current
-          })
-          wx.setStorageSync("index", e.detail.current)
-          this.getUrl(this.data.showlist[this.data.songIndexs].id)
+      this.store.data.index = e.detail.current
+      wx.setStorageSync("index", e.detail.current)
+      if (this.store.data.singlist[this.store.data.index].radio) {
+        this.setData({
+          djLock: true
+        })
+      }
+      if (this.store.data.play){
+        if (this.data.djLock){
+          this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
+        }else {
+          this.getUrl(this.store.data.singlist[this.store.data.index].id)
         }
       }
     },
     editShow(e) {
-      // console.log(e,1)
       this.setData({
         show: e.detail
       })
-    },
-    editorder(e) {
-      // console.log(e,2)
-      this.setData({
-        order: e.detail
-      })
-    },
-    editOrder(e) {
-      this.setData({
-        order: e.currentTarget.dataset.item
-      })
-      wx.setStorageSync("order", e.currentTarget.dataset.item)
     },
     openShow() {
       this.setData({
         show: true
       })
-      console.log(this.data.show)
     },
     getUrl(id) {
       app.globalData.fly.get(`/song/url?id=${id}`).then(res => {
         // console.log(res.data,2)
         if (res.data.code === 200) {
-          this.setData({
-            dataUrl: res.data.data[0],
-          })
+          this.data.dataUrl = res.data.data[0]
           this.backgroundAudioManager()
-          // console.log(this.data.dataUrl)
         }
       }).catch(err => {
         console.log(err)
       })
     },
     nextSong() {
-      if (this.data.songIndex > -1) {
-        if (this.data.order === "2") {
-          this.data.songIndex = Math.floor(Math.random() * this.data.list.length)
-        } else {
-          this.data.songIndex++
-            if (this.data.songIndex > this.data.list.length - 1) {
-              this.data.songIndex = 0
-            }
-        }
-        this.getdata(this.data.list[this.data.songIndex].id)
-        wx.setStorageSync("index", this.data.songIndex)
+      if (this.store.data.order === "2") {
+        this.store.data.index = Math.floor(Math.random() * this.store.data.singlist.length)
       } else {
-        if (this.data.order === "2") {
-          this.data.songIndexs = Math.floor(Math.random() * this.data.showlist.length)
-        } else {
-          this.data.songIndexs++
-            if (this.data.songIndexs > this.data.showlist.length - 1) {
-              this.data.songIndexs = 0
-            }
+        this.store.data.index++
+        if (this.store.data.index > this.store.data.singlist.length - 1) {
+          this.store.data.index = 0
         }
-        this.getdata(this.data.showlist[this.data.songIndexs].id)
-        wx.setStorageSync("index", this.data.songIndexs)
+      }
+      if (this.store.data.singlist[this.store.data.index].radio) {
+        this.setData({
+          djLock: true
+        })
+        this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
+      } else {
+        this.getUrl(this.store.data.singlist[this.store.data.index].id)
+      }
+      wx.setStorageSync("index", this.store.data.index)
+    },
+    editTime(time) {
+      let t = Math.round(time)
+      if (t / 60 < 10) {
+        if (t % 60 > 9) {
+          return `0${Math.floor(t / 60)} : ${t % 60}`
+        } else {
+          return `0${Math.floor(t / 60)} : 0${t % 60}`
+        }
+      } else {
+        if (t % 60 > 9) {
+          return `${Math.floor(t / 60)} : ${t % 60}`
+        } else {
+          return `${Math.floor(t / 60)} : 0${t % 60}`
+        }
       }
     },
     backgroundAudioManager() {
-      if (this.data.backgroundAudio) {
-        this.data.backgroundAudio.stop()
-      }
-      let backgroundAudio = wx.getBackgroundAudioManager()
-      backgroundAudio.src = this.data.dataUrl.url
-      console.log()
-      if (this.data.songIndex > -1) {
-        backgroundAudio.title = this.data.list[this.data.songIndex].name
-        backgroundAudio.coverImgUrl = this.data.list[this.data.songIndex].al.picUrl
+      if (app.globalData.backgroundAudio) {
+        if (app.globalData.backgroundAudio.src === this.data.dataUrl.url) { } else {
+          app.globalData.backgroundAudio.stop()
+          app.globalData.backgroundAudio.src = this.data.dataUrl.url
+          app.globalData.backgroundAudio.title = this.store.data.singlist[this.store.data.index].name
+          if (this.data.djLock) {
+            app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].coverUrl
+          } else {
+            app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].al.picUrl
+          }
+        }
       } else {
-        backgroundAudio.title = this.data.showlist[this.data.songIndexs].name
-        backgroundAudio.coverImgUrl = this.data.showlist[this.data.songIndexs].al.picUrl
+        app.globalData.backgroundAudio.src = this.data.dataUrl.url
+        app.globalData.backgroundAudio.title = this.store.data.singlist[this.store.data.index].name
+        if (this.data.djLock) {
+          app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].coverUrl
+        } else {
+          app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].al.picUrl
+        }
       }
-
-      this.setData({
-        backgroundAudio,
-      })
-      this.data.backgroundAudio.onTimeUpdate(() => {
+      app.globalData.backgroundAudio.onTimeUpdate(() => {
+        // this.store.data.all = app.globalData.backgroundAudio.duration
+        // this.store.data.nowTime = this.editTime(app.globalData.backgroundAudio.currentTime)
+        // this.store.data.allTime = this.editTime(app.globalData.backgroundAudio.duration)
+        // this.store.data.progress = app.globalData.backgroundAudio.currentTime / app.globalData.backgroundAudio.duration * 100
         this.setData({
-          progress: this.data.backgroundAudio.currentTime / this.data.backgroundAudio.duration * 100
+          progress: app.globalData.backgroundAudio.currentTime / app.globalData.backgroundAudio.duration * 100
         })
       })
-      this.data.backgroundAudio.onEnded(() => {
+      app.globalData.backgroundAudio.onEnded(() => {
         if (this.data.order === "3") {
-          if (this.data.songIndex > -1) {
-            this.getUrl(this.data.list[this.data.songIndex].id)
+          if (this.data.djLock) {
+            this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
           } else {
-            this.getUrl(this.data.showlist[this.data.songIndexs].id)
+            this.getdata(this.store.data.singlist[this.store.data.index].id)
           }
         } else {
           this.nextSong()

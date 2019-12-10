@@ -1,3 +1,4 @@
+@import "/app.wxss";
 .foot {
   position: fixed;
   bottom: 0;
@@ -20,8 +21,6 @@
   margin: 0 3%;
 }
 
-.pic {
-}
 
 .pic image {
   border-radius: 50%;
@@ -59,8 +58,6 @@
   margin-left: 30rpx;
 }
 
-.name {
-}
 
 .singer {
   font-size: 24rpx;

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-icon": "/lib/vant/icon/index"
+    "van-icon": "/lib/vant/icon/index",
+    "footPlay": "../../components/public/footPlay/footPlay"
   },
   "navigationBarTitleText": "我的"
 }

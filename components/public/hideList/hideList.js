@@ -1,5 +1,10 @@
 // components/public/hideList/hideList.js
-Component({
+import create from '../../../utils/create'
+import store from '../../../store/index'
+const app = getApp()
+create.Component(store,{
+  // 声明依赖
+  use: ['singlist', 'index', 'order'], //也支持复杂路径依赖，比如 ['list[0].name']
   /**
    * 组件的属性列表
    */
@@ -7,93 +12,110 @@ Component({
     show:{
       type:Boolean,
       value:false
-    },
-    order: {
-      type: String,
-      value: "1",
-    },
+    }
   },
-  
   /**
    * 组件的初始数据
    */
   data: {
-    order:"1",
-    list:null,
-    songIndex:null
-  },
-  ready() {
-    this.setData({
-      list: wx.getStorageSync("songlist"),
-      songIndex: wx.getStorageSync("index"),
-      order: wx.getStorageSync("order")
-    })
   },
   /**
    * 组件的方法列表
    */
   methods: {
     editOrder(e){
-      console.log(e.currentTarget.dataset.item)
-      this.setData({
-        order: e.currentTarget.dataset.item
-      })
+      this.store.data.order = e.currentTarget.dataset.item
       wx.setStorageSync("order", e.currentTarget.dataset.item)
-      this.triggerEvent('editorder', e.currentTarget.dataset.item) 
     },
     onClose(){
       this.triggerEvent('myevent', false) 
     },
     checkOne(e){
-      this.setData({
-        songIndex: e.currentTarget.dataset.index
-      })
+      this.store.data.index = e.currentTarget.dataset.index
       wx.setStorageSync("index", e.currentTarget.dataset.index)
+      if (this.store.data.singlist[this.store.data.index].radio) {
+        this.setData({
+          djLock: true
+        })
+        this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
+      } else {
+        this.getUrl(this.store.data.singlist[this.store.data.index].id)
+      }
     },
-    delterOne(){
-      this.data.list.splice(e.currentTarget.dataset.index,1)
-      this.setData({
-        list: this.data.list
-      })
-      wx.setStorageSync("songlist", this.data.list)
+    delterOne(e){
+      this.store.data.singlist.splice(e.currentTarget.dataset.index,1)
+      wx.setStorageSync("songlist", this.store.data.singlist)
     },
     collectAll(){
 
     },
     delterAll(){
-      wx.removeStorageSync("songlist")
+      wx.showModal({
+        content: '确认要清空播放列表?',
+        success:(res)=> {
+          if (res.confirm) {
+            this.triggerEvent('myevent', false) 
+            this.store.data.singlist = []
+            wx.removeStorageSync("songlist")
+            wx.setStorageSync("index", 0)
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    },
+    getUrl(id) {
+      app.globalData.fly.get(`/song/url?id=${id}`).then(res => {
+        // console.log(res.data,2)
+        if (res.data.code === 200) {
+          this.data.dataUrl = res.data.data[0]
+          this.backgroundAudioManager()
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    nextSong() {
+      if (this.store.data.order === "2") {
+        this.store.data.index = Math.floor(Math.random() * this.store.data.singlist.length)
+      } else {
+        this.store.data.index++
+        if (this.store.data.index > this.store.data.singlist.length - 1) {
+          this.store.data.index = 0
+        }
+      }
+      if (this.store.data.singlist[this.store.data.index].radio) {
+        this.setData({
+          djLock: true
+        })
+        this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
+      } else {
+        this.getUrl(this.store.data.singlist[this.store.data.index].id)
+      }
+      wx.setStorageSync("index", this.store.data.index)
     },
     backgroundAudioManager() {
-      if (this.data.backgroundAudio) {
-        this.data.backgroundAudio.stop()
+      if (app.globalData.backgroundAudio) {
+        app.globalData.backgroundAudio.stop()
       }
-      let backgroundAudio = wx.getBackgroundAudioManager()
-      backgroundAudio.src = this.data.dataUrl.url
-      console.log()
-      if (this.data.songIndex > -1) {
-        backgroundAudio.title = this.data.list[this.data.songIndex].name
-        backgroundAudio.coverImgUrl = this.data.list[this.data.songIndex].al.picUrl
+      app.globalData.backgroundAudio.src = this.data.dataUrl.url
+      app.globalData.backgroundAudio.title = this.store.data.singlist[this.store.data.index].name
+      if (this.data.djLock) {
+        app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].coverUrl
       } else {
-        backgroundAudio.title = this.data.showlist[this.data.songIndexs].name
-        backgroundAudio.coverImgUrl = this.data.showlist[this.data.songIndexs].al.picUrl
+        app.globalData.backgroundAudio.coverImgUrl = this.store.data.singlist[this.store.data.index].al.picUrl
       }
-
-      this.setData({
-        backgroundAudio,
-      })
-      this.data.backgroundAudio.onTimeUpdate(() => {
+      app.globalData.backgroundAudio.onTimeUpdate(() => {
         this.setData({
-          all: this.data.backgroundAudio.duration,
-          now: this.data.backgroundAudio.currentTime,
-          progress: this.data.backgroundAudio.currentTime / this.data.backgroundAudio.duration * 100
+          progress: Math.round(app.globalData.backgroundAudio.currentTime / app.globalData.backgroundAudio.duration * 100)
         })
       })
-      this.data.backgroundAudio.onEnded(() => {
+      app.globalData.backgroundAudio.onEnded(() => {
         if (this.data.order === "3") {
-          if (this.data.songIndex > -1) {
-            this.getUrl(this.data.list[this.data.songIndex].id)
+          if (this.data.djLock) {
+            this.getUrl(this.store.data.singlist[this.store.data.index].mainTrackId)
           } else {
-            this.getUrl(this.data.showlist[this.data.songIndexs].id)
+            this.getdata(this.store.data.singlist[this.store.data.index].id)
           }
         } else {
           this.nextSong()

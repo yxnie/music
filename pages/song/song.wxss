@@ -10,17 +10,20 @@
   filter: blur(200rpx);
   z-index: -99;
 }
+
 .title {
   text-align: center;
   color: white;
   font-size: 26rpx;
 }
+
 .name {
   font-weight: bold;
   margin-top: 50rpx;
   margin-bottom: 20rpx;
   font-size: 40rpx;
 }
+
 .title image {
   width: 400rpx;
   display: block;
@@ -28,19 +31,41 @@
   border-radius: 50%;
   margin: 0 auto;
 }
+
 .img {
   padding-top: 100rpx;
 }
+
+.moveImg {
+  animation: move 22s linear infinite;
+}
+
+@keyframes move {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.stop {
+  animation-play-state: paused;
+}
+
 .play image {
   width: 60rpx;
   height: 60rpx;
   display: block;
 }
+
 .play {
   margin-top: 120rpx;
   display: flex;
   justify-content: space-around;
 }
+
 .circulation {
   position: relative;
 }
@@ -51,20 +76,24 @@
   position: relative;
   top: -10rpx;
 }
+
 .progress {
   position: relative;
 }
+
 .custom-class {
   width: 400rpx;
   margin: 100rpx auto 60rpx;
   /* position: absolute; */
 }
+
 .nowTime {
   position: absolute;
   top: -20rpx;
   left: -140rpx;
   color: white;
 }
+
 .allTime {
   position: absolute;
   top: -20rpx;

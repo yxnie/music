@@ -23,9 +23,9 @@ Component({
    */
   methods: {
     goDj(e){
-      // console.log(e.currentTarget.dataset.id)
+      // console.log(e.currentTarget.dataset.rid)
       wx.navigateTo({
-        url: `/pages/djProgram/djProgram?id=${e.currentTarget.dataset.id}&rid=${e.currentTarget.dataset.rid}`
+        url: `/pages/djProgram/djProgram?rid=${e.currentTarget.dataset.rid}`
       })
     }
   }

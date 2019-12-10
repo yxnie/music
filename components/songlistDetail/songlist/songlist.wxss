@@ -86,3 +86,6 @@
   height: 26rpx;
   margin-right: 14rpx;
 }
+.word {
+  flex: 1;
+}

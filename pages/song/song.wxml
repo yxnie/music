@@ -1,8 +1,14 @@
-<view style="background-image: url('{{data.songs[0].al.picUrl}}')" class="bg"></view>
-<view class="title">
+<view style="background-image: url('{{data.coverUrl}}')" class="bg" wx:if="{{djLock}}"></view>
+<view class="title" wx:if="{{djLock}}">
+<view class="name">{{data.name}}</view>
+<view>{{data.radio.name}}</view>
+<view class="img"><image src="{{data.coverUrl}}" class="moveImg {{pauseLock?'stop':''}}"></image></view>
+</view>
+<view style="background-image: url('{{data.songs[0].al.picUrl}}')" class="bg" wx:if="{{!djLock}}"></view>
+<view class="title" wx:if="{{!djLock}}">
 <view class="name">{{data.songs[0].name}}</view>
 <view>{{data.songs[0].al.name}}</view>
-<view class="img"><image src="{{data.songs[0].al.picUrl}}"></image></view>
+<view class="img"><image src="{{data.songs[0].al.picUrl}}" class="moveImg {{pauseLock?'stop':''}}"></image></view>
 </view>
 <collect></collect>
 <view></view>
@@ -13,16 +19,16 @@
 </view>
 <view class="play">
   <view class="circulation">
-    <image src="../../images/circulation.png" bindtap="editOrder" data-item="2" wx:if="{{order==='1'}}"></image>
-    <image src="../../images/random.png" wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3"></image>
-    <image src="../../images/circulationone.png" wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1"></image>
+    <image src="../../images/circulation.png" bindtap="editOrder" data-item="2" wx:if="{{$.order==='1'}}"></image>
+    <image src="../../images/random.png" wx:if="{{$.order==='2'}}" bindtap="editOrder" data-item="3"></image>
+    <image src="../../images/circulationone.png" wx:if="{{$.order==='3'}}" bindtap="editOrder" data-item="1"></image>
   </view>
   <view>
     <image src="../../images/last.png" bindtap="lastSong"></image>
   </view>
   <view class="center">
-    <image src="../../images/pause.png" bindtap="pause" wx:if="{{!pauseLock}}"></image>
-    <image src="../../images/songplay.png" wx:else bindtap="play"></image>
+    <image src="../../images/pause.png" bindtap="pause" wx:if="{{$.play}}"></image>
+    <image src="../../images/songplay.png" bindtap="play" wx:else></image>
   </view>
   <view>
     <image src="../../images/next.png" bindtap="nextSong"></image>
@@ -31,4 +37,4 @@
     <image src="../../images/playlist.png" bindtap="openShow"></image>
   </view>
 </view>
-<hideList show="{{show}}" bind:myevent="editShow" order="{{order}}"  bind:editorder="editorder"></hideList>
+<hideList show="{{show}}" bind:myevent="editShow"></hideList>

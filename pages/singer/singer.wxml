@@ -8,3 +8,4 @@
   </scroll-view>
 </view>
 <list data="{{list}}"></list>
+<footPlay></footPlay>

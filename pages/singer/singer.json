@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-tab": "/lib/vant/tab/index",
     "van-tabs": "/lib/vant/tabs/index",
-    "list":"../../components/singer/list/list"
+    "list":"../../components/singer/list/list",
+    "footPlay": "../../components/public/footPlay/footPlay"
   },
   "navigationBarTitleText": "歌手"
 }

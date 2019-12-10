@@ -33,4 +33,4 @@
   <foot data="{{program}}"></foot>
 </view>
 <search wx:if="{{searchLock}}" bind:editSearchLock="editSearchLock"></search>
-<footPlay wx:if="{{songlist}}"></footPlay>
+<footPlay></footPlay>

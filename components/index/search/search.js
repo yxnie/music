@@ -84,7 +84,8 @@ Component({
     hotLock:true,
     nameId:null,
     history:[],
-    errLock:true
+    errLock:true,
+    scrollLock:false
   },
   ready() {
     if (wx.getStorageSync("user")) {
@@ -111,8 +112,19 @@ Component({
       })
       wx.removeStorageSync(this.data.nameId)
     },
+    gotype(e){
+      // console.log(e)
+      this.setData({
+        type: e.detail*1,
+        length: 30,
+        start: 0,
+        dataList: []
+      });
+      if (this.data.errLock) {
+        this.goSearch()
+      }
+    },
     search(e) {
-      // console.log(e.detail.value.trim())
       if (e.detail.value.trim()) {
         this.setData({
           inputValue: e.detail.value
@@ -126,7 +138,6 @@ Component({
           this.setData({
             show: true
           });
-          // console.log(res.data.result)
         }).catch(err => {
           console.log(err)
         })
@@ -146,7 +157,6 @@ Component({
       this.triggerEvent('editSearchLock', false)
     },
     checkType(e) {
-      // console.log(e.currentTarget.dataset.type)
       this.setData({
         type: e.currentTarget.dataset.type,
         length: 30,
@@ -163,6 +173,7 @@ Component({
           this.setData({
             start: this.data.limit * 1 + this.data.start * 1
           })
+          this.data.scrollLock = true
           this.goSearch()
         }
       }
@@ -193,8 +204,15 @@ Component({
         show: false,
         hotLock: false,
         history: this.data.history,
-        errLock: true
+        errLock: true,
       });
+      if (!this.data.scrollLock){
+        this.setData({
+          length: 30,
+          start: 0,
+          dataList: []
+        });
+      }
       app.globalData.fly.get(`/search?keywords=${this.data.inputValue}&type=${this.data.type}&limit=${this.data.limit}&offset=${this.data.start}`).then(res => {
         if (this.data.type === 1018) {
           res.data.result.playList.playLists.map(item => {
@@ -240,24 +258,27 @@ Component({
                 length: res.data.result[item.title].length,
                 count: res.data.result[item.count]
               })
+              this.data.scrollLock = false
             }
           })
         }
         wx.hideLoading()
-        // console.log(this.data.dataList)
-        // console.log(res.data.result)
       }).catch(err => {
         wx.hideLoading()
-        // console.log(err)
         this.setData({
           errLock: false
         })
       })
     },
     checkSuggest(e) {
-      // console.log(e.currentTarget.dataset.item)
       this.setData({
         inputValue: e.currentTarget.dataset.item
+      });
+      this.goSearch()
+    },
+    hotSearch(e){
+      this.setData({
+        inputValue: e.detail
       });
       this.goSearch()
     },

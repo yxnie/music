@@ -10,7 +10,6 @@ Page({
     djprogram:[],
     program:[],
     searchLock:false,
-    songlist:null
   },
   //推荐歌单
   getData() {

@@ -41,3 +41,4 @@
     <van-button type="info" size="large" bind:click="goLogin">立即登录</van-button>
   </view>
 </view>
+<footPlay></footPlay>

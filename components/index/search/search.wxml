@@ -1,4 +1,4 @@
-<view class="wrap">
+ <view class="wrap">
   <view class="top">
     <view class="back" bindtap="back">
       <image src="../../../images/backHome.png"></image>
@@ -35,7 +35,7 @@
   </view>
   <scroll-view style="height: 84rpx;" scroll-x="true" class="history" wx:if="{{history.length}}">
     <view class="searchList" wx:for="{{history}}" wx:key="{{index}}">
-      <view>{{item}}</view>
+      <view catchtap="checkSuggest" data-item="{{item}}">{{item}}</view>
     </view>
   </scroll-view>
   <view class="history">热搜榜</view>
@@ -67,7 +67,7 @@
   </scroll-view>
   <scroll-view bindscrolltolower="scrollToLower" style="height: 900rpx;" scroll-y="true">
   <view wx:if="{{errLock}}">
-  <all data="{{data}}" wx:if="{{type===1018}}"></all>
+    <all data="{{data}}" wx:if="{{type===1018}}" bind:gotype="gotype" bind:hotSearch="hotSearch"></all>
     <single data="{{dataList}}" wx:if="{{type===1}}"></single>
     <vedio data="{{dataList}}" wx:if="{{type===1014}}"></vedio>
     <singer data="{{dataList}}" wx:if="{{type===100}}"></singer>

@@ -1,3 +1,4 @@
+@import "/app.wxss";
 .all image {
   height: 50rpx;
   width: 50rpx;
