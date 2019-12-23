@@ -73,11 +73,13 @@ Page({
         console.log(err)
         wx.showToast({
           title: err.engine.response.message,
+          icon: 'none'
         })
       })
     }else {
       wx.showToast({
         title: '请确认信息无误',
+        icon: 'none'
       })
     }
   },
@@ -94,6 +96,7 @@ Page({
     } else {
       wx.showToast({
         title: '请确认信息无误',
+        icon: 'none'
       })
     }
   },

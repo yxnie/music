@@ -1,14 +1,14 @@
 // pages/my/my.js
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     uid:null,
     user:{},
-    nickname:""
+    nickname:"",
+    lock:false
   },
   edit(){
     wx.navigateTo({
@@ -45,6 +45,10 @@ Page({
     })
   },
   logOut(){
+    wx.removeStorageSync("user")
+    this.setData({
+      lock:false
+    })
     wx.navigateTo({
       url: "/pages/login/login"
     })
@@ -77,12 +81,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(wx.getStorageSync("user").userPoint.userId)
-    this.setData({
-      uid: wx.getStorageSync("user").userPoint.userId,
-      nickname: wx.getStorageSync("user").profile.nickname
-    })
-    this.getInfo()
+    // console.log(wx.getStorageSync("user").userPoint.userId)
     // this.getlist()
   },
 
@@ -97,7 +96,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(wx.getStorageSync("user")){
+      this.setData({
+        lock:true
+      })
+    }
+    if (wx.getStorageSync("user")) {
+      this.setData({
+        uid: wx.getStorageSync("user").userPoint.userId,
+        nickname: wx.getStorageSync("user").profile.nickname
+      })
+      this.getInfo()
+    }
   },
 
   /**

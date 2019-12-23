@@ -1,7 +1,7 @@
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" style="height:260rpx;" indicator-active-color="red">
   <block wx:for="{{imgUrls}}" wx:key="index">
     <swiper-item>
-      <image style="display:block;width:100%;margin:0 auto;" src="{{item.pic}}" class="slide-image" mode="widthFix" />
+      <image style="display:block;width:100%;margin:0 auto;" src="{{item.pic}}" class="slide-image" mode="widthFix" style="border-radius:20rpx;margin:0 auto" />
     </swiper-item>
     </block>
 </swiper>

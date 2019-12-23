@@ -1,5 +1,5 @@
 <view class="all">
-  <view wx:for="{{musicNewPower}}" wx:key="{{index}}" class="recommendone" bindtap="play" data-item="{{item}}">
+  <view wx:for="{{musicNewPower}}" wx:key="index" class="recommendone" bindtap="play" data-item="{{item}}">
   <view class="playCount">
         <image src="../../../images/play2.png"></image>
       </view>

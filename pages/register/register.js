@@ -37,6 +37,7 @@ Page({
     } else {
       wx.showToast({
         title: '请确认信息无误',
+        icon: 'none'
       })
     }
   },
@@ -112,6 +113,7 @@ Page({
           if (res.data.exist === 1) {
             wx.showToast({
               title: '该号码已被注册',
+              icon: 'none'
             })
           } else {
             this.getCode()
@@ -122,11 +124,13 @@ Page({
       } else {
         wx.showToast({
           title: '请填写正确的手机号码',
+          icon: 'none'
         })
       }
     } else {
       wx.showToast({
         title: '请填写手机号码',
+        icon: 'none'
       })
     }
   },
@@ -146,6 +150,7 @@ Page({
       if (err.status === 400) {
         wx.showToast({
           title: "手机号码不规范",
+          icon: 'none'
         })
       }
     })

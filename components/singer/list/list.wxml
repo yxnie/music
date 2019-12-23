@@ -1,5 +1,5 @@
 <view class="singer">
-  <view wx:for="{{data}}" wx:key="{{index}}" class="one" bindtap="goSingerDetail" data-item="{{item}}">
+  <view wx:for="{{data}}" wx:key="index" class="one" bindtap="goSingerDetail" data-item="{{item}}">
     <image src="{{item.picUrl}}" lazy-load="{{true}}"></image>
     <view class="name">{{item.name}}</view>
   </view>

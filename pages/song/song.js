@@ -189,6 +189,9 @@ create.Page(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(!wx.getStorageSync('order')){
+      wx.setStorageSync('order',"1")
+    }
     if (!this.store.data.index) {
       this.store.data.index = wx.getStorageSync("index")
       this.store.data.singlist = wx.getStorageSync("songlist")

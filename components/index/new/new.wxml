@@ -10,7 +10,7 @@
 </view>
 <view>
   <view wx:if="{{lock}}" class="all">
-    <view wx:for="{{newDisc}}" wx:key="{{index}}" class="recommendone" bindtap="goSonglist" data-id="{{item.id}}">
+    <view wx:for="{{newDisc}}" wx:key="index" class="recommendone" bindtap="goSonglist" data-id="{{item.id}}">
       <view class="playCount">
         <image src="../../../images/play2.png"></image>
       </view>
@@ -21,7 +21,7 @@
     </view>
   </view>
   <view wx:else class="all">
-    <view wx:for="{{newSong}}" wx:key="{{index}}" class="recommendone" bindtap="play" data-item="{{item}}">
+    <view wx:for="{{newSong}}" wx:key="index" class="recommendone" bindtap="play" data-item="{{item}}">
       <view class="playCount">
         <image src="../../../images/play.png"></image>
       </view>

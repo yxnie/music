@@ -1,5 +1,5 @@
 <view class="all">
-  <view wx:for="{{recommend}}" wx:key="{{index}}" class="recommendone" bindtap="goSonglistDetail" data-id="{{item.id}}">
+  <view wx:for="{{recommend}}" wx:key="index" class="recommendone" bindtap="goSonglistDetail" data-id="{{item.id}}">
     <view class="playCount">
       <image src="../../../images/play.png"></image>{{item.playCount}}</view>
     <view>

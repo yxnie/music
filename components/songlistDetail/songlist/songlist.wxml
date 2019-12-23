@@ -17,7 +17,7 @@
 <view class="songlist">
   <scroll-view scroll-y="true" style="height:1000rpx">
   <block wx:if="{{data.playlist.tracks}}">
-    <view wx:for="{{data.playlist.tracks}}" wx:key="{{index}}" class="song" bindtap="play" data-id="{{item.id}}" data-index="{{index}}">
+    <view wx:for="{{data.playlist.tracks}}" wx:key="index" class="song" bindtap="play" data-id="{{item.id}}" data-index="{{index}}">
       <view class="index">{{index+1}}</view>
       <view class="desc">
         <view class="songName overflowOne">{{item.name}}</view>
@@ -36,7 +36,7 @@
     </view>
   </block>
   <block wx:if="{{data.songs}}">
-    <view wx:for="{{data.songs}}" wx:key="{{index}}" class="song" bindtap="play" data-id="{{item.privilege.id}}" data-index="{{index}}">
+    <view wx:for="{{data.songs}}" wx:key="index" class="song" bindtap="play" data-id="{{item.privilege.id}}" data-index="{{index}}">
       <view class="index">{{index+1}}</view>
       <view class="desc">
         <view class="songName">{{item.name}}</view>

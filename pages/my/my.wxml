@@ -1,4 +1,4 @@
-<view wx:if="{{uid}}" class="all">
+<view wx:if="{{lock}}" class="all">
   <view class="top">
     <view class="before">
       <image src="{{user.profile.avatarUrl}}"></image>

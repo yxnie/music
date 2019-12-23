@@ -1,10 +1,10 @@
 <van-tabs active="{{ active }}" bind:click="onChange" ellipsis="{{false}}">
-  <van-tab wx:for="{{category}}" wx:key="{{index}}" title="{{item.name}}" name="{{item.cat}}"></van-tab>
+  <van-tab wx:for="{{category}}" wx:key="index" title="{{item.name}}" name="{{item.cat}}"></van-tab>
 </van-tabs>
 <view class="top" wx:if="{{cat!=='5001'}}">
   <scroll-view scroll-x="true" class="classify">
     <view class="one {{nowAlphabet===''?'check':''}}">热</view>
-    <view wx:for="{{alphabet}}" wx:key="{{index}}" bindtap="checkletter" data-item="{{item}}" class="one {{nowAlphabet===item?'check':''}}">{{item}}</view>
+    <view wx:for="{{alphabet}}" wx:key="index" bindtap="checkletter" data-item="{{item}}" class="one {{nowAlphabet===item?'check':''}}">{{item}}</view>
   </scroll-view>
 </view>
 <list data="{{list}}"></list>

@@ -14,6 +14,16 @@ create.Component(store,{
       value:false
     }
   },
+  ready(){
+    if (!wx.getStorageSync('order')) {
+      wx.setStorageSync('order', "1")
+    }
+    if (!this.store.data.index) {
+      this.store.data.index = wx.getStorageSync("index")
+      this.store.data.singlist = wx.getStorageSync("songlist")
+      this.store.data.order = wx.getStorageSync("order")
+    }
+  },
   /**
    * 组件的初始数据
    */

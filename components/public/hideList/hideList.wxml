@@ -11,9 +11,9 @@
           <image src="../../../images/circulationone1.png" wx:if="{{$.order==='3'}}" bindtap="editOrder" data-item="1"></image>
         </view>
         <view class="modelWord">
-          <view wx:if="{{order==='1'}}" bindtap="editOrder" data-item="2">列表循环</view>
-          <view wx:if="{{order==='2'}}" bindtap="editOrder" data-item="3">随机播放</view>
-          <view wx:if="{{order==='3'}}" bindtap="editOrder" data-item="1">单曲循环</view>
+          <view wx:if="{{$.order==='1'}}" bindtap="editOrder" data-item="2">列表循环</view>
+          <view wx:if="{{$.order==='2'}}" bindtap="editOrder" data-item="3">随机播放</view>
+          <view wx:if="{{$.order==='3'}}" bindtap="editOrder" data-item="1">单曲循环</view>
         </view>
         <view>({{$.singlist.length}})</view>
       </view>
@@ -26,7 +26,7 @@
     </view>
     <scroll-view scroll-y="true" style="height:755rpx">
       <view class="list">
-        <view wx:for="{{$.singlist}}" wx:key="{{index}}" class="one" bindtap="checkOne" data-index="{{index}}">
+        <view wx:for="{{$.singlist}}" wx:key="index" class="one" bindtap="checkOne" data-index="{{index}}">
           <view class="before">
             <view wx:if="{{index===$.index}}">
               <image src="../../../images/horm.png"></image>
